@@ -1,0 +1,1 @@
+my_fvt_number = 3.1415
