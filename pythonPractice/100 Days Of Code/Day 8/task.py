@@ -1,3 +1,4 @@
+from art import logo
 # def greet():
 #     print("Hello")
 #     print("How do you do ? ")
@@ -38,20 +39,57 @@ greet_with("Rohan", "Indore")  """
 
 # cesar cypher 
 
+# def encrypt(original_text,shift_amount):
+#     cipher_text = ""
+#     for char in original_text:
+#         get_new_index = letters.index(char.lower()) + shift_amount
+#         get_new_index %= len(letters)  # 0 - 25 
+#         cipher_text += (letters[get_new_index])
+#     print(cipher_text)
+
+
+# def decrypt(cipher_text, shift_amount):
+#     original_text = ""
+#     for char in cipher_text:
+#         shifted_position = letters.index(char.lower())-shift_amount
+#         shifted_position %=len(letters)
+#         original_text += letters[shifted_position]
+#     print(original_text)
+
+print(logo)
+
 letters = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
 ]
 
-def encrypt(original_text,shift_amount):
-    encode_letter = ""
+def caesar (original_text, shift_amount, encode_or_decode):
+    cipher_text = ""
+    if encode_or_decode == "decode":
+        shift_amount *= -1 
     for char in original_text:
-        get_index = letters.index(char.lower())
-        get_new_index = shift_amount+get_index  
-        encode_letter = encode_letter + (letters[get_new_index])
-    print(encode_letter)
+        if char not in letters:
+            cipher_text +=char
+        else:
+            get_new_index = letters.index(char.lower()) + shift_amount
+            get_new_index %= len(letters)  # 0 - 25 
+            cipher_text += letters[get_new_index]
+    print(f"Here is the {encode_or_decode}, result {cipher_text}")
 
 
-encrypt("Z",1)
+should_countiue = True
+
+while should_countiue:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    caesar(original_text=text,shift_amount=shift, encode_or_decode= direction)
+    user_input = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n").lower()
+    if user_input =='no':
+        print("Good Bye !!! ")
+        should_countiue = False
+
+
+    
 
 
